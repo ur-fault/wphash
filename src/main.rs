@@ -1,8 +1,7 @@
 use std::{
-    collections::{HashMap, HashSet},
+    collections::HashSet,
     hash::{DefaultHasher, Hash as _, Hasher as _},
-    ops::{self, Add, Deref},
-    str::FromStr,
+    ops::{self, Add},
 };
 
 use cmder::Program;
