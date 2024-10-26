@@ -4,3 +4,8 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+cmder = "0.6.1"
+image = "0.25.4"
+rand = "0.8.5"
+rand_xoshiro = "0.6.0"
+smallvec = "1.13.2"
