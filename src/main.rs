@@ -73,28 +73,6 @@ fn main() {
         });
 
     program.parse();
-
-    // let seed = get_arg(&args, "s", Some(0u64));
-    // let point_count = get_arg(&args, "p", Some(0u8));
-    //
-    // let seed = if seed == 0 { thread_rng().gen() } else { seed };
-    //
-    // let size = Dims(width, height);
-    // let point_count = if point_count == 0 {
-    //     (size.product() / 100).min(u8::MAX as i32) as u8
-    // } else {
-    //     point_count
-    // };
-    //
-    // let mut rng = Xoshiro256StarStar::seed_from_u64(seed);
-    //
-    // println!("Generating points: {:?}", (size, point_count));
-    // let points = randon_points(size, point_count, &mut rng);
-    //
-    // println!("Generating groups");
-    // let groups = split_groups(points, size, &mut rng);
-    //
-    // save_output(size, groups, seed);
 }
 
 fn save_output(size: Dims, groups: Array2D<u8>, base_hash: u64, filename: &str) {
@@ -243,10 +221,6 @@ struct Array2D<T> {
 }
 
 impl<T> Array2D<T> {
-    fn len(&self) -> usize {
-        self.buf.len()
-    }
-
     fn dim_to_idx(&self, pos: Dims) -> Option<usize> {
         let Dims(x, y) = pos;
         let (x, y) = (x as usize, y as usize);
@@ -256,17 +230,6 @@ impl<T> Array2D<T> {
         }
 
         Some(y * self.width + x)
-    }
-
-    fn idx_to_dim(&self, idx: usize) -> Option<Dims> {
-        if idx >= self.buf.len() {
-            return None;
-        }
-
-        let x = idx % self.width;
-        let y = (idx / self.width) % self.height;
-
-        Some(Dims(x as i32, y as i32))
     }
 
     fn get(&self, pos: Dims) -> Option<&T> {
